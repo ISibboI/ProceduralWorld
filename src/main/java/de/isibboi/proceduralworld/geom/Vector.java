@@ -1,5 +1,7 @@
 package de.isibboi.proceduralworld.geom;
 
+import java.util.Random;
+
 public class Vector {
 	private final double x, y;
 
@@ -73,5 +75,15 @@ public class Vector {
 
 	public double l2Norm() {
 		return Math.sqrt(x * x + y * y);
+	}
+
+	public Point pickDirection(Random random) {
+		double sumAbs = sumNorm();
+		double pick = random.nextDouble() * sumAbs;
+		if (pick < Math.abs(getX())) {
+			return new Point(getXSign(), 0);
+		} else {
+			return new Point(0, getYSign());
+		}
 	}
 }

@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-public class Point {
+public class Point implements Comparable<Point> {
 	private static final List<Point> neighbors;
 	static {
 		neighbors = new ArrayList<>(8);
@@ -76,5 +76,28 @@ public class Point {
 	@Override
 	public String toString() {
 		return "[" + x + ", " + y + "]";
+	}
+	
+	@Override
+	public int hashCode() {
+		return x + (y << 16);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Point) {
+			Point p = (Point) obj;
+			return p.x == x && p.y == y;
+		}
+		return false;
+	}
+
+	@Override
+	public int compareTo(Point o) {
+		if (o.y == y) {
+			return x - o.x;
+		} else {
+			return y - o.y;
+		}
 	}
 }

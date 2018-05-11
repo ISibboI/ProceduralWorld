@@ -41,7 +41,7 @@ public class DropletErosion {
 			droplet.water = Math.max(0, droplet.water - 1e-3);
 			depositUncarryableSoil(droplet, worldLayer);
 			final Vector gradient = worldLayer.getDownwardsGradient(droplet.location).add(droplet.momentum);
-			final Point direction = pickDirection(random, gradient);
+			final Point direction = gradient.pickDirection(random);
 			final Point newLocation = droplet.location.add(direction);
 			if (!worldLayer.getSize().contains(newLocation)) {
 				break;
@@ -58,16 +58,6 @@ public class DropletErosion {
 			}
 			droplet.location = newLocation;
 			droplet.momentum = droplet.momentum.add(gradient).multiply(maxTerrainTake);
-		}
-	}
-
-	private Point pickDirection(Random random, Vector gradient) {
-		double sumAbs = gradient.sumNorm();
-		double pick = random.nextDouble() * sumAbs;
-		if (pick < Math.abs(gradient.getX())) {
-			return new Point(gradient.getXSign(), 0);
-		} else {
-			return new Point(0, gradient.getYSign());
 		}
 	}
 	

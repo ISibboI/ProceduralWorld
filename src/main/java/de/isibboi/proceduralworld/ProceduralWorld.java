@@ -14,8 +14,7 @@ import de.isibboi.proceduralworld.world.World;
 public class ProceduralWorld {
 	public static void main(String[] args) {
 		Random random = new Random();
-		World w = new World(new Size(1000, 1000), new WorldGenerator());
-		w.generate(random);
+		World w = new WorldGenerator().generateWorld(new Size(1000, 1000), random);
 		Timeline timeline = new Timeline(w, new AgeGenerator(0.05, new DropletErosion(2000)), new WaterGenerator());
 		
 		TimelineFrame timelineFrame = new TimelineFrame(timeline, random);
