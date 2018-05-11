@@ -30,6 +30,11 @@ public class Point {
 		this(r.nextInt(size.getWidth()), r.nextInt(size.getHeight()));
 	}
 
+	public Point(java.awt.Point p) {
+		x = p.x;
+		y = p.y;
+	}
+
 	public int getX() {
 		return x;
 	}
