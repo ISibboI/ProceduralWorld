@@ -81,8 +81,8 @@ public class ErosionTest {
 			World current = timeline.getWorld(age, r);
 			double currentMin = current.getHeightMap().calculateMin();
 			double currentMax = current.getHeightMap().calculateMax();
-			assertTrue("Min not strictly monotonous increasing", currentMin > lastMin);
-			assertTrue("Max not strictly monotonous decreasing", currentMax < lastMax);
+			assertTrue("Min not monotonous increasing", currentMin >= lastMin);
+			assertTrue("Max not monotonous decreasing", currentMax <= lastMax);
 			last = current;
 			lastMin = currentMin;
 			lastMax = currentMax;
